@@ -5,23 +5,14 @@ import { createBook, listBooks, welcomeLibrary, getBookById, deleteBook, updateB
 
 const libraryRouter = express.Router();
 
-
+// Rotas públicas
+libraryRouter.get("/book/:id", getBookById);
 libraryRouter.get("/", welcomeLibrary);
-
-
-libraryRouter.post("/book", createBook);
-
-
 libraryRouter.get("/books", listBooks);
 
-
-libraryRouter.get("/book/:id", getBookById);
-
-
-libraryRouter.delete("/book/:id", deleteBook);
-
-
-libraryRouter.patch("/book/:id", updateBook);
-
+// Rotas protegidas
+libraryRouter.post("/book", autenticar,  createBook);
+libraryRouter.delete("/book/:id", autenticar, deleteBook);
+libraryRouter.patch("/book/:id", autenticar, updateBook);
 
 export default libraryRouter;

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { AuthUser } from '../core/usecases/AuthUser';
 import libraryService from '../factories/libraryFactory'; 
 
 export const welcomeLibrary = async (_: Request, res: Response): Promise<void> => {
