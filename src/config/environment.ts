@@ -7,6 +7,6 @@ if(process.env.NODE_ENV !== 'production'){
 export const config = {
     port: process.env.PORT || 3000,
     mongoUrl: process.env.MONGO_URL || 'mongodb://localhost:27017/Cluster0',
-    // jwtSecret: process.env.JWT_SECRET || 'fallback-secret-key',
+    jwtSecret: process.env.JWT_SECRET || 'fallback-secret-key',
     nodeEnv: process.env.NODE_ENV || 'development'
 }

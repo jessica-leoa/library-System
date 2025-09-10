@@ -1,3 +1,4 @@
+import { gerarToken } from "../../shared/helpers/jwt";
 import { IUserRepository } from "../repositories/IUserRepository";
 import bcrypt from 'bcrypt';
 
@@ -21,7 +22,9 @@ export class AuthUser{
             throw new Error("credenciais inválidas")
         }
 
-        return user.name;
+        const token = gerarToken({id: user.id, email: user.email});
+        
+        return token;
 
     }
 }

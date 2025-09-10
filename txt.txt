@@ -1,0 +1,3 @@
+● POST /books
+● PATCH/books/:id
+● DELETE /books/:id
