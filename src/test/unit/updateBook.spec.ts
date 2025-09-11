@@ -10,30 +10,30 @@ describe('UPDATE libraryService', () => {
     libraryService = new LibraryService(fakeRepo);
   });
 
-  it('deverá atualizar as informações de um livro pelo ID', async () => {
+  it('deverá atualizar um livro pelo ID', async () => {
     const bookData: BookData = {
-      title: 'Capitães da Areia',
-      content: 'romance da literatura brasileira',
-      status: 'emprestado',
-      author: 'Jorge Amado'
+      title: 'Orgulho e Preconceito',
+      content: 'livro de romance',
+      status: 'disponível',
+      author: 'Jane Austen'
     };
 
     const book = await libraryService.createBook(bookData);
 
     const updatedData: Partial<BookData> = {
-      title: 'Capitães da Areia - Nova Edição',
-      content: 'romance clássico revisado',
+      title: 'Orgulho e Preconceito - Edição Atualizada',
+      content: 'livro de romance - Edição Atualizada',
     };
 
     const updatedBook = await libraryService.updateBook(book.id, updatedData);
 
     expect(updatedBook).toEqual({
       id: book.id,
-      title: 'Capitães da Areia - Nova Edição',
-      content: 'romance clássico revisado',
+      title: 'Orgulho e Preconceito - Edição Atualizada',
+      content: 'livro de romance - Edição Atualizada',
       created_at: book.created_at,
-      status: 'emprestado',
-      author: 'Jorge Amado'
+      status: 'disponível',
+      author: 'Jane Austen'
     });
   });
 });

@@ -9,22 +9,22 @@ describe('POST libraryService', () => {
         libraryService = new LibraryService(fakeRepo);
     });
 
-    it('deverá adicionar um novo livro e retornar suas informações', async () => {
+    it('deverá criar um livro e retornar seu status', async () => {
         const book = await libraryService.createBook({
-            title: 'Dom Casmurro',
-            content: 'romance clássico da literatura brasileira',
-            status: 'emprestado',
-            author: 'Machado de Assis'
+            title: 'Orgulho e Preconceito',
+            content: 'livro de romance',
+            status: 'disponível',
+            author: 'Jane Austen'
         });
 
         expect(book).toBeDefined();
-        expect(book.status).toBe('emprestado');
+        expect(book.status).toBe('disponível');
         expect(book.id).toBeTruthy();
         expect(book).toEqual(expect.objectContaining({
-            title: 'Dom Casmurro',
-            content: 'romance clássico da literatura brasileira',
-            status: 'emprestado',
-            author: 'Machado de Assis'
+            title: 'Orgulho e Preconceito',
+            content: 'livro de romance',
+            status: 'disponível',
+            author: 'Jane Austen'
         }));
     });
 

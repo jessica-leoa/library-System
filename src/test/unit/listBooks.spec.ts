@@ -9,16 +9,16 @@ describe('GET libraryService', () => {
         libraryService = new LibraryService(fakeRepo);
     });
 
-    it('deverá listar todos os livros cadastrados', async () => {
+    it('deverá retornar todos os livros criados', async () => {
         await libraryService.createBook({
-            title: 'Memórias Póstumas de Brás Cubas',
-            content: 'romance satírico da literatura brasileira',
-            status: 'em estoque',
-            author: 'Machado de Assis'
+            title: 'Orgulho e Preconceito',
+            content: 'livro de romance',
+            status: 'disponível',
+            author: 'Jane Austen'
         });
 
-        const books = await libraryService.listBooks();
+        const listBookCreated = await libraryService.listBooks();
 
-        expect(books[0].title).toBe('Memórias Póstumas de Brás Cubas');
-    });
+        expect(listBookCreated[0].title).toBe('Orgulho e Preconceito')
+    })
 });
