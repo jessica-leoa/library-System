@@ -9,9 +9,9 @@ userRouter.get("/welcomeUser", welcomeUser);
 
 userRouter.get("/user/:id", autenticar, getUserById);
 
-userRouter.get("/users", listUsers)
+userRouter.get("/users", listUsers);
 
-userRouter.post("/user", createUser);
+userRouter.post("/createUser", createUser);
 
 userRouter.post("/login", loginUser);
 

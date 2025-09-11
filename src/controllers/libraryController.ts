@@ -12,7 +12,7 @@ export const createBook = async (req: Request, res: Response): Promise<void> => 
     const newBook = await libraryService.createBook({ title, content, status, author });
     res.status(201).json(newBook);
   } catch (error) {
-    res.status(500).json({ message: 'Erro na criação do livro', error });
+    res.status(500).json({ message: 'O livro já está cadastrado'});
   }
 };
 
@@ -21,7 +21,7 @@ export const listBooks = async (_: Request, res: Response): Promise<void> => {
     const books = await libraryService.listBooks();
     res.status(200).json(books);
   } catch (error) {
-    res.status(500).json({ message: 'Erro na listagem de livros', error });
+    res.status(500).json({ message: 'Erro na listagem de livros' });
   }
 };
 
@@ -37,7 +37,7 @@ export const getBookById = async (req: Request, res: Response): Promise<void> =>
     res.status(200).json(book);
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Erro na busca do livro', error });
+    res.status(500).json({ message: 'Erro na busca do livro' });
   }
 };
 
@@ -48,7 +48,7 @@ export const deleteBook = async (req: Request, res: Response): Promise<void> => 
     await libraryService.deleteBookById(id);
     res.status(200).json({ message: `Livro com ID ${id} deletado com sucesso!` });
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao deletar livro', error });
+    res.status(500).json({ message: 'Erro ao deletar livro'});
   }
 };
 
@@ -66,6 +66,6 @@ export const updateBook = async (req: Request, res: Response): Promise<void> => 
 
     res.status(200).json(updatedBook);
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao atualizar livro', error });
+    res.status(500).json({ message: 'Erro ao atualizar livro' });
   }
 };

@@ -4,17 +4,17 @@ import { AuthUser } from '../core/usecases/AuthUser';
 import { MongoUserRepository } from '../infra/database/mongoUserRepository'; 
 
 export const welcomeUser = async (_: Request, res: Response): Promise<void> => {
-  res.status(200).json('API de Usuários!');
+  res.status(200).json('API de Usuários');
 };
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
-  const { name, email, login,password } = req.body;
+  const { name, email, login, password } = req.body;
 
   try {
     const newUser = await userService.createUser({ name, email, login, password });
     res.status(201).json(newUser);
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao tentar criar novo usuário', error });
+    res.status(500).json({ message: 'Usuário já cadastrado'});
   }
 };
 
@@ -23,7 +23,7 @@ export const listUsers = async (_: Request, res: Response): Promise<void> => {
     const users = await userService.listUsers();
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao tentar listar usuários', error });
+    res.status(500).json({ message: 'Erro ao tentar listar usuários'});
   }
 };
 
@@ -38,7 +38,7 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao buscar usuário', error });
+    res.status(500).json({ message: 'Erro ao buscar usuário' });
   }
 }
 
@@ -50,7 +50,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const token = await authUser.execute({ email, password });
 
-    res.status(200).json({ token });
+    res.status(200).json({ message: `Usuário com sucesso logado!! Token de acesso: ${token}` });
   } catch (error: any) {
     res.status(401).json({ message: error.message });
   }
@@ -78,6 +78,6 @@ export const getMe = async (req: Request, res: Response): Promise<void> => {
       login: user.login,
     });
   } catch (error) {
-    res.status(500).json({ message: "Erro ao buscar dados do usuário", error });
+    res.status(500).json({ message: "Erro ao buscar dados do usuário"});
   }
 };
